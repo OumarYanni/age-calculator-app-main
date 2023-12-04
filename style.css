@@ -51,7 +51,9 @@ input {
 .result-container {
 }
 
-.year-container {
+.year-container,
+.month-container,
+.day-container {
 }
 
 .display-result-year {
