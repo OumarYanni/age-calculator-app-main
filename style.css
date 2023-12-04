@@ -1,0 +1,18 @@
+:root {
+  --electric-violet: #854dff;
+  --persimmon: #ff5757;
+  --white: #ffff;
+  --gallery: #f0f0f0;
+  --alto: #dbdbdb;
+  --dove-gray: #716f6f;
+  --cod-gray: #141414;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 32px;
+}
