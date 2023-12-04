@@ -24,19 +24,61 @@
   </head>
   <body>
     <div>
-      <form action="post">
+      <form action="">
         <div class="form-group">
-          <label>DD</label>
+          <label>Day</label>
+          <input
+            type="number"
+            class="day-input"
+            name="day-input"
+            placeholder="DD"
+          />
         </div>
-        Day Month MM Year YYYY -- years -- months -- days
+        <div class="form-group">
+          <label>Month</label>
+          <input
+            type="number"
+            class="month-input"
+            name="month-input"
+            placeholder="MM"
+          />
+        </div>
+        <div class="form-group">
+          <label>Year</label>
+          <input
+            type="number"
+            class="year-input"
+            name="year-input"
+            placeholder="YYYY"
+          />
+        </div>
       </form>
+      <button class="display-result" type="submit">
+        <img src="assets\images\icon-arrow.svg" alt="submit" />
+      </button>
+
+      <div class="result-container">
+        <div class="year-container">
+          <span class="display-result-year">--</span>
+          <span class="years">years</span>
+        </div>
+
+        <div class="month-container">
+          <span class="display-result-month">--</span>
+          <span class="months">months</span>
+        </div>
+
+        <div class="day-container">
+          <span class="display-result-day">--</span>
+          <span class="days">days</span>
+        </div>
+      </div>
     </div>
 
-    <div class="attribution">
-      Challenge by
-      <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
-        >Frontend Mentor</a
-      >. Coded by <a href="#">Your Name Here</a>.
-    </div>
+    <footer class="">
+      <a href="https://www.linkedin.com/in/oumar-yanni/">
+        Passionate Coding by Oumar Yanni.</a
+      >
+    </footer>
   </body>
 </html>
