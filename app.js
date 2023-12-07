@@ -8,20 +8,45 @@ form.addEventListener("submit", function (e) {
   }
 });
 
+// Première étape : finir toutes les vérifications avec les day, month et year
+// Deuxième étape : afficher des messages d'erreurs quand le day ou le month n'est pas correct
+// Objectif : avoir un truc qui marche mais si c'est moche
+
 function isInputValid() {
-  let dayErrorElement = document.querySelector("#day-error");
-  dayErrorElement.textContent = "";
+    const dayInputElement = document.querySelector("#day-input");
+    const dayInputValue = dayInputElement.value;
+    const isDayValid = dayInputValue >= 1 && dayInputValue <= 31
+    
+    const monthInputElement = document.querySelector("#month-input");
+    const monthInputValue = monthInputElement.value;
+    
+    const yearInputElement = document.querySelector("#year-input");
+    const yearInputValue = yearInputElement.value;
 
-  let isValid = true;
-  const dayInputElement = document.querySelector("#day-input");
-  const dayInputValue = dayInputElement.value;
+    console.log(isDayValid)
 
-  if (!dayInputValue) {
-    dayErrorElement.textContent = "this field is required";
-    isValid = false;
-  }
+    // Ce n'est pas valide
+    if (!dayInputValue || !monthInputValue || !yearInputValue) {
+        console.log("===")
+    } else { // C'est valide
 
-  return isValid;
+    }
+
+
+
+//   let dayErrorElement = document.querySelector("#day-error");
+//   dayErrorElement.textContent = "";
+
+//   let isValid = true;
+//   const dayInputElement = document.querySelector("#day-input");
+//   const dayInputValue = dayInputElement.value;
+
+//   if (!dayInputValue) {
+//     dayErrorElement.textContent = "this field is required";
+//     isValid = false;
+//   }
+
+//   return isValid;
 }
 
 // let dayErrorElement = document.querySelector("#day-error");
