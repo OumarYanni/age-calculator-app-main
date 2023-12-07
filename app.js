@@ -3,12 +3,12 @@ const form = document.querySelector("#age-form");
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  if (isValidInput()) {
+  if (isInputValid()) {
     submitForm();
   }
 });
 
-function isValidInput() {
+function isInputValid() {
   let dayErrorElement = document.querySelector("#day-error");
   dayErrorElement.textContent = "";
 
