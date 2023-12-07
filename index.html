@@ -24,7 +24,7 @@
   </head>
   <body>
     <div class="container">
-      <form action="">
+      <form id="age-form" action="" name="age-form">
         <div class="form-group">
           <label for="day-input">Day</label>
           <input
@@ -33,6 +33,7 @@
             name="day-input"
             placeholder="DD"
           />
+          <span class="error" id="day-error"></span>
         </div>
         <div class="form-group">
           <label for="month-input">Month</label>
@@ -42,6 +43,7 @@
             name="month-input"
             placeholder="MM"
           />
+          <span class="error" id="month-error"></span>
         </div>
         <div class="form-group">
           <label for="year-input">Year</label>
@@ -51,6 +53,7 @@
             name="year-input"
             placeholder="YYYY"
           />
+          <span class="error" id="year-error"></span>
         </div>
 
         <button type="submit" class="display-result-btn">
