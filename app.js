@@ -14,34 +14,51 @@ form.addEventListener("submit", function (e) {
 
 function isInputValid() {
   const dayInputElement = document.querySelector("#day-input");
-  const dayInputValue = dayInputElement.value;
+  const dayInputValue = parseInt(dayInputElement.value, 10);
   const isDayValid = dayInputValue >= 1 && dayInputValue <= 31;
 
   const monthInputElement = document.querySelector("#month-input");
-  const monthInputValue = monthInputElement.value;
-  const isMonthValid = monthInputValue >= 1 && monthInputValue <= 12;
+  const monthInputValue = parseInt(monthInputElement.value, 10) - 1;
+  const isMonthValid = monthInputValue >= 0 && monthInputValue <= 11;
 
   const yearInputElement = document.querySelector("#year-input");
-  const yearInputValue = yearInputElement.value;
+  const yearInputValue = parseInt(yearInputElement.value, 10);
 
-  let currentDate = new Date();
-  let dateToBeVerified = new Date(
-    yearInputValue,
-    monthInputValue,
-    dayInputValue
-  );
-  const isDateInTheFuture = dateToBeVerified < currentDate;
+  const isAnyFieldEmpty =
+    dayInputElement.value.trim() === "" ||
+    monthInputElement.value.trim() === "" ||
+    yearInputElement.value.trim() === "";
 
-  console.log(isDayValid);
-  console.log(isMonthValid);
-  console.log(isDateInTheFuture);
+  if (isAnyFieldEmpty) {
+    console.log("Veuillez remplir tous les champs.");
+  } else {
+    let currentDate = new Date();
+    let dateToBeVerified = new Date(
+      yearInputValue,
+      monthInputValue,
+      dayInputValue
+    );
+    const isDateInTheFuture = dateToBeVerified > currentDate;
 
-  // Ce n'est pas valide
+    const daysInMonth = new Date(
+      yearInputValue,
+      monthInputValue + 1,
+      0
+    ).getDate();
+    const isDaysInMonthValid = dayInputValue <= daysInMonth;
+
+    console.log(isDayValid);
+    console.log(isMonthValid);
+    console.log(isDateInTheFuture);
+    console.log(isDaysInMonthValid);
+  }
+
+  /*// Ce n'est pas valide
   if (!dayInputValue || !monthInputValue || !yearInputValue) {
     console.log("===");
   } else {
     // C'est valide
-  }
+  }*/
 
   //   let dayErrorElement = document.querySelector("#day-error");
   //   dayErrorElement.textContent = "";
