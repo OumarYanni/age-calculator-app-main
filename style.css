@@ -35,8 +35,16 @@ form {
 .form-group {
 }
 
+.label {
+  color: var(--dove-gray);
+  font-size: 12px;
+}
+
 input {
   max-width: 3.5rem;
+  margin-left: 0.3rem;
+  padding: 0.5rem 1rem 0.5rem 0.5rem;
+  border-radius: 0.5rem;
 }
 
 .month-input {

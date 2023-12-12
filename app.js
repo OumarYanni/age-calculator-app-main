@@ -8,9 +8,10 @@ form.addEventListener("submit", function (e) {
   }
 });
 
-// Première étape : finir toutes les vérifications avec les day, month et year
-// Deuxième étape : afficher des messages d'erreurs quand le day ou le month n'est pas correct
-// Objectif : avoir un truc qui marche mais si c'est moche
+// Next step : comment créer des petites fonctions réutilisables
+// Essayer de créer une fonction spécialisée par input notamment day, month et year
+// Chaque fonction retournera deux éléments (booléen et string)
+// Commmencer par finaliser la fonction isDayInputValid()
 
 function isInputValid() {
   let dayErrorElement = document.querySelector("#day-error");
@@ -38,7 +39,17 @@ function isInputValid() {
     yearInputElement.value.trim() === "";
 
   if (isAnyFieldEmpty) {
-    console.log("This field is required");
+    if (dayInputElement.value.trim() === "") {
+      dayErrorElement.textContent = "This field is required";
+    }
+
+    if (monthInputElement.value.trim() === "") {
+      monthErrorElement.textContent = "This field is required";
+    }
+
+    if (yearInputElement.value.trim() === "") {
+      yearErrorElement.textContent = "This field is required";
+    }
   } else {
     let currentDate = new Date();
     let dateToBeVerified = new Date(
