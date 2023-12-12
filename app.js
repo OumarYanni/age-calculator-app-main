@@ -3,7 +3,10 @@ const form = document.querySelector("#age-form");
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  if (isInputValid()) {
+  const isDayValid = isDayInputValid();
+  const isMonthValid = isMonthInputValid();
+  const isYearValid = isYearInputValid();
+  if (isDayValid && isMonthValid && isYearValid) {
     submitForm();
   }
 });
@@ -13,107 +16,94 @@ form.addEventListener("submit", function (e) {
 // Chaque fonction retournera deux éléments (booléen et string)
 // Commmencer par finaliser la fonction isDayInputValid()
 
-function isInputValid() {
-  let dayErrorElement = document.querySelector("#day-error");
-  let monthErrorElement = document.querySelector("#month-error");
-  let yearErrorElement = document.querySelector("#year-error");
+let dayErrorElement = document.querySelector("#day-error");
+dayErrorElement.textContent = "";
 
-  dayErrorElement.textContent = "";
-  monthErrorElement.textContent = "";
-  yearErrorElement.textContent = "";
+const dayInputElement = document.querySelector("#day-input");
+const dayInputValue = parseInt(dayInputElement.value, 10);
 
-  const dayInputElement = document.querySelector("#day-input");
-  const dayInputValue = parseInt(dayInputElement.value, 10);
-  const isDayValid = dayInputValue >= 1 && dayInputValue <= 31;
+function isDayInputValid() {
+  if (dayInputElement.value.trim() === "") {
+    dayErrorElement.textContent = "This field is required";
 
-  const monthInputElement = document.querySelector("#month-input");
-  const monthInputValue = parseInt(monthInputElement.value, 10) - 1;
-  const isMonthValid = monthInputValue >= 0 && monthInputValue <= 11;
-
-  const yearInputElement = document.querySelector("#year-input");
-  const yearInputValue = parseInt(yearInputElement.value, 10);
-
-  const isAnyFieldEmpty =
-    dayInputElement.value.trim() === "" ||
-    monthInputElement.value.trim() === "" ||
-    yearInputElement.value.trim() === "";
-
-  if (isAnyFieldEmpty) {
-    if (dayInputElement.value.trim() === "") {
-      dayErrorElement.textContent = "This field is required";
-    }
-
-    if (monthInputElement.value.trim() === "") {
-      monthErrorElement.textContent = "This field is required";
-    }
-
-    if (yearInputElement.value.trim() === "") {
-      yearErrorElement.textContent = "This field is required";
-    }
-  } else {
-    let currentDate = new Date();
-    let dateToBeVerified = new Date(
-      yearInputValue,
-      monthInputValue,
-      dayInputValue
-    );
-    const isDateInTheFuture = dateToBeVerified > currentDate;
-
-    const daysInMonth = new Date(
-      yearInputValue,
-      monthInputValue + 1,
-      0
-    ).getDate();
-    const isDaysInMonthValid = dayInputValue <= daysInMonth;
-
-    // console.log(isDayValid);
-    // console.log(isMonthValid);
-    // console.log(isDateInTheFuture);
-    // console.log(isDaysInMonthValid);
-
-    if (!isDayValid) {
-      dayErrorElement.textContent = "Must be a valid day";
-    }
-
-    if (!isMonthValid) {
-      monthErrorElement.textContent = "Must be a valid month";
-    }
-
-    if (isDateInTheFuture) {
-      yearErrorElement.textContent = "Must be in the past";
-    }
-
-    if (!isDaysInMonthValid) {
-      dayErrorElement.textContent = "Must be a valid day";
-    }
+    return false;
   }
 
-  /*// Ce n'est pas valide
-  if (!dayInputValue || !monthInputValue || !yearInputValue) {
-    console.log("===");
-  } else {
-    // C'est valide
-  }*/
+  const isDayValid = dayInputValue >= 1 && dayInputValue <= 31;
+  if (!isDayValid) {
+    dayErrorElement.textContent = "Must be a valid day";
+  }
 
-  //   let dayErrorElement = document.querySelector("#day-error");
-  //   dayErrorElement.textContent = "";
-
-  //   let isValid = true;
-  //   const dayInputElement = document.querySelector("#day-input");
-  //   const dayInputValue = dayInputElement.value;
-
-  //   if (!dayInputValue) {
-  //     dayErrorElement.textContent = "this field is required";
-  //     isValid = false;
-  //   }
-
-  //   return isValid;
+  return isDayValid;
 }
 
-// let dayErrorElement = document.querySelector("#day-error");
-// dayErrorElement = dayErrorElement.textContent = "123";
+let monthErrorElement = document.querySelector("#month-error");
+monthErrorElement.textContent = "";
 
-// console.log(dayErrorElement);
+const monthInputElement = document.querySelector("#month-input");
+const monthInputValue = parseInt(monthInputElement.value, 10) - 1;
+
+function isMonthInputValid(yearInputValue, dayInputValue) {
+  if (monthInputElement.value.trim() === "") {
+    monthErrorElement.textContent = "This field is required";
+
+    return false;
+  }
+
+  const isMonthValid = monthInputValue >= 0 && monthInputValue <= 11;
+
+  if (!isMonthValid) {
+    monthErrorElement.textContent = "Must be a valid month";
+
+    return false;
+  }
+
+  const daysInMonth = new Date(
+    yearInputValue,
+    monthInputValue + 1,
+    0
+  ).getDate();
+
+  const isDaysInMonthValid = dayInputValue <= daysInMonth;
+
+  if (!isDaysInMonthValid) {
+    dayErrorElement.textContent = "Must be a valid day";
+
+    return false;
+  }
+
+  return true;
+}
+
+let yearErrorElement = document.querySelector("#year-error");
+yearErrorElement.textContent = "";
+
+const yearInputElement = document.querySelector("#year-input");
+const yearInputValue = parseInt(yearInputElement.value, 10);
+
+function isYearInputValid(monthInputValue, dayInputValue) {
+  if (yearInputElement.value.trim() === "") {
+    yearErrorElement.textContent = "This field is required";
+
+    return false;
+  }
+
+  let currentDate = new Date();
+  let dateToBeVerified = new Date(
+    yearInputValue,
+    monthInputValue,
+    dayInputValue
+  );
+  const isDateInTheFuture = dateToBeVerified > currentDate;
+
+  if (isDateInTheFuture) {
+    yearErrorElement.textContent = "Must be in the past";
+
+    return true;
+  }
+
+  return true;
+}
 
 function submitForm() {
   //form.submit();
