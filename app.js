@@ -13,6 +13,14 @@ form.addEventListener("submit", function (e) {
 // Objectif : avoir un truc qui marche mais si c'est moche
 
 function isInputValid() {
+  let dayErrorElement = document.querySelector("#day-error");
+  let monthErrorElement = document.querySelector("#month-error");
+  let yearErrorElement = document.querySelector("#year-error");
+
+  dayErrorElement.textContent = "";
+  monthErrorElement.textContent = "";
+  yearErrorElement.textContent = "";
+
   const dayInputElement = document.querySelector("#day-input");
   const dayInputValue = parseInt(dayInputElement.value, 10);
   const isDayValid = dayInputValue >= 1 && dayInputValue <= 31;
@@ -30,7 +38,7 @@ function isInputValid() {
     yearInputElement.value.trim() === "";
 
   if (isAnyFieldEmpty) {
-    console.log("Veuillez remplir tous les champs.");
+    console.log("This field is required");
   } else {
     let currentDate = new Date();
     let dateToBeVerified = new Date(
@@ -47,10 +55,26 @@ function isInputValid() {
     ).getDate();
     const isDaysInMonthValid = dayInputValue <= daysInMonth;
 
-    console.log(isDayValid);
-    console.log(isMonthValid);
-    console.log(isDateInTheFuture);
-    console.log(isDaysInMonthValid);
+    // console.log(isDayValid);
+    // console.log(isMonthValid);
+    // console.log(isDateInTheFuture);
+    // console.log(isDaysInMonthValid);
+
+    if (!isDayValid) {
+      dayErrorElement.textContent = "Must be a valid day";
+    }
+
+    if (!isMonthValid) {
+      monthErrorElement.textContent = "Must be a valid month";
+    }
+
+    if (isDateInTheFuture) {
+      yearErrorElement.textContent = "Must be in the past";
+    }
+
+    if (!isDaysInMonthValid) {
+      dayErrorElement.textContent = "Must be a valid day";
+    }
   }
 
   /*// Ce n'est pas valide
