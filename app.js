@@ -3,9 +3,32 @@ const form = document.querySelector("#age-form");
 form.addEventListener("submit", function (e) {
   e.preventDefault();
 
-  const isDayValid = isDayInputValid();
-  const isMonthValid = isMonthInputValid();
-  const isYearValid = isYearInputValid();
+  const dayInputValue = parseInt(
+    document.querySelector("#day-input").value,
+    10
+  );
+  const monthInputValue =
+    parseInt(document.querySelector("#month-input").value, 10) - 1;
+  const yearInputValue = parseInt(
+    document.querySelector("#year-input").value,
+    10
+  );
+
+  const isDayValid = isDayInputValid(
+    dayInputValue,
+    monthInputValue,
+    yearInputValue
+  );
+  const isMonthValid = isMonthInputValid(
+    dayInputValue,
+    monthInputValue,
+    yearInputValue
+  );
+  const isYearValid = isYearInputValid(
+    yearInputValue,
+    monthInputValue,
+    dayInputValue
+  );
   if (isDayValid && isMonthValid && isYearValid) {
     submitForm();
   }
@@ -16,13 +39,13 @@ form.addEventListener("submit", function (e) {
 // Chaque fonction retournera deux éléments (booléen et string)
 // Commmencer par finaliser la fonction isDayInputValid()
 
-let dayErrorElement = document.querySelector("#day-error");
-dayErrorElement.textContent = "";
+function isDayInputValid(dayInputValue, monthInputValue, yearInputValue) {
+  let dayErrorElement = document.querySelector("#day-error");
+  dayErrorElement.textContent = "";
 
-const dayInputElement = document.querySelector("#day-input");
-const dayInputValue = parseInt(dayInputElement.value, 10);
+  const dayInputElement = document.querySelector("#day-input");
+  // const dayInputValue = parseInt(dayInputElement.value, 10);
 
-function isDayInputValid() {
   if (dayInputElement.value.trim() === "") {
     dayErrorElement.textContent = "This field is required";
 
@@ -32,18 +55,32 @@ function isDayInputValid() {
   const isDayValid = dayInputValue >= 1 && dayInputValue <= 31;
   if (!isDayValid) {
     dayErrorElement.textContent = "Must be a valid day";
+
+    return false;
   }
 
-  return isDayValid;
+  const daysInMonth = new Date(
+    yearInputValue,
+    monthInputValue + 1,
+    0
+  ).getDate();
+
+  if (dayInputValue > daysInMonth) {
+    dayErrorElement.textContent = "Must be a valid day";
+
+    return false;
+  }
+
+  return true;
 }
 
-let monthErrorElement = document.querySelector("#month-error");
-monthErrorElement.textContent = "";
+function isMonthInputValid(dayInputValue, monthInputValue, yearInputValue) {
+  let monthErrorElement = document.querySelector("#month-error");
+  monthErrorElement.textContent = "";
 
-const monthInputElement = document.querySelector("#month-input");
-const monthInputValue = parseInt(monthInputElement.value, 10) - 1;
+  const monthInputElement = document.querySelector("#month-input");
+  // const monthInputValue = parseInt(monthInputElement.value, 10) - 1;
 
-function isMonthInputValid(yearInputValue, dayInputValue) {
   if (monthInputElement.value.trim() === "") {
     monthErrorElement.textContent = "This field is required";
 
@@ -58,30 +95,30 @@ function isMonthInputValid(yearInputValue, dayInputValue) {
     return false;
   }
 
-  const daysInMonth = new Date(
-    yearInputValue,
-    monthInputValue + 1,
-    0
-  ).getDate();
+  // const daysInMonth = new Date(
+  //   yearInputValue,
+  //   monthInputValue + 1,
+  //   0
+  // ).getDate();
 
-  const isDaysInMonthValid = dayInputValue <= daysInMonth;
+  // const isDaysInMonthValid = dayInputValue <= daysInMonth;
 
-  if (!isDaysInMonthValid) {
-    dayErrorElement.textContent = "Must be a valid day";
+  // if (!isDaysInMonthValid) {
+  //   dayErrorElement.textContent = "Must be a valid day";
 
-    return false;
-  }
+  //   return false;
+  // }
 
   return true;
 }
 
-let yearErrorElement = document.querySelector("#year-error");
-yearErrorElement.textContent = "";
+function isYearInputValid(yearInputValue, monthInputValue, dayInputValue) {
+  let yearErrorElement = document.querySelector("#year-error");
+  yearErrorElement.textContent = "";
 
-const yearInputElement = document.querySelector("#year-input");
-const yearInputValue = parseInt(yearInputElement.value, 10);
+  const yearInputElement = document.querySelector("#year-input");
+  // const yearInputValue = parseInt(yearInputElement.value, 10);
 
-function isYearInputValid(monthInputValue, dayInputValue) {
   if (yearInputElement.value.trim() === "") {
     yearErrorElement.textContent = "This field is required";
 
@@ -99,7 +136,7 @@ function isYearInputValid(monthInputValue, dayInputValue) {
   if (isDateInTheFuture) {
     yearErrorElement.textContent = "Must be in the past";
 
-    return true;
+    return false;
   }
 
   return true;
