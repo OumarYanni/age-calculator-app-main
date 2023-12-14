@@ -53,7 +53,17 @@ input {
 .year-input {
 }
 
-.display-result--btn {
+.display-result-btn {
+  border-radius: 50%;
+  background-color: var(--electric-violet);
+  border: none;
+  cursor: pointer;
+  padding: 1rem;
+}
+
+.display-result-btn img {
+  width: 25px;
+  height: 25px;
 }
 
 .result-container {
