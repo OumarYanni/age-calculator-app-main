@@ -30,14 +30,11 @@ form.addEventListener("submit", function (e) {
     dayInputValue
   );
   if (isDayValid && isMonthValid && isYearValid) {
-    submitForm();
+    submitForm(dayInputValue, monthInputValue, yearInputValue);
   }
 });
 
-// Next step : comment créer des petites fonctions réutilisables
-// Essayer de créer une fonction spécialisée par input notamment day, month et year
-// Chaque fonction retournera deux éléments (booléen et string)
-// Commmencer par finaliser la fonction isDayInputValid()
+// Next step : calculer day, month et year
 
 function isDayInputValid(dayInputValue, monthInputValue, yearInputValue) {
   let dayErrorElement = document.querySelector("#day-error");
@@ -141,8 +138,45 @@ function isYearInputValid(yearInputValue, monthInputValue, dayInputValue) {
 
   return true;
 }
+// reexpliquer toute cette fonction avec mes mots
+function calculateAge(dayInputValue, monthInputValue, yearInputValue) {
+  const birthDate = new Date(yearInputValue, monthInputValue, dayInputValue);
+  const today = new Date();
 
-function submitForm() {
+  let yearAge = today.getFullYear() - birthDate.getFullYear();
+  let monthAge = today.getMonth() - birthDate.getMonth();
+  let dayAge = today.getDate() - birthDate.getDate();
+  //à expliquer
+  if (dayAge < 0) {
+    monthAge--;
+    dayAge += new Date(yearInputValue, monthInputValue + 1, 0).getDate();
+  }
+
+  if (monthAge < 0) {
+    yearAge--;
+    monthAge += 12;
+  }
+  // à expliquer
+  return { yearAge, monthAge, dayAge };
+}
+
+function submitForm(dayInputValue, monthInputValue, yearInputValue) {
+  const age = calculateAge(dayInputValue, monthInputValue, yearInputValue);
+
+  document.querySelector(".display-result-year").textContent = age.yearAge;
+  document.querySelector(".display-result-month").textContent = age.monthAge;
+  document.querySelector(".display-result-day").textContent = age.dayAge;
+
+  console.log(
+    "Age caculé : ",
+    age.yearAge,
+    "ans",
+    age.monthAge,
+    "mois",
+    age.dayAge,
+    "jours"
+  );
+
   //form.submit();
   console.log("formulaire soumis !");
 }

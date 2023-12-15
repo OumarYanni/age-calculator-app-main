@@ -17,6 +17,12 @@ body {
   font-size: 32px;
   margin: 2rem;
   background-color: var(--alto);
+  height: 100vh; /* Hauteur égale à X% de la hauteur de la fenêtre du navigateur */
+  /*width: 100vw; /* Largeur égale à X% de la largeur de la fenêtre du navigateur */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .container {
@@ -27,9 +33,9 @@ body {
 
 form {
   display: flex;
-  border-bottom: 1px solid var(--dove-gray);
+  /*border-bottom: 1px solid var(--dove-gray);*/
   font-size: 16px;
-  padding: 1rem;
+  /*padding: 1rem;*/
 }
 
 .form-group {
@@ -41,10 +47,17 @@ form {
 }
 
 input {
-  max-width: 3.5rem;
-  margin-left: 0.3rem;
+  max-width: 4.8rem;
+  /*margin-left: 0.3rem;*/
+  margin: 0.2rem;
   padding: 0.5rem 1rem 0.5rem 0.5rem;
   border-radius: 0.5rem;
+  border-color: var(--alto);
+  border-style: solid;
+}
+
+input:focus {
+  border: 1px solid var(--electric-violet);
 }
 
 .month-input {
@@ -59,14 +72,22 @@ input {
   border: none;
   cursor: pointer;
   padding: 1rem;
+  position: absolute;
+  top: 25%;
+  right: 40%;
 }
 
 .display-result-btn img {
-  width: 25px;
-  height: 25px;
+  width: 2.5rem;
+  height: 2.5rem;
 }
 
 .result-container {
+  border-top-color: var(--alto);
+  border-top-style: solid;
+  margin-top: 5rem;
+  padding-top: 5rem;
+  font-size: 45px;
 }
 
 .year-container,
@@ -74,8 +95,20 @@ input {
 .day-container {
 }
 
-.display-result-year {
+.display-result-year,
+.display-result-month,
+.display-result-day {
+  color: var(--electric-violet);
 }
 
 .years {
+}
+
+footer {
+}
+
+footer a {
+  color: var(--electric-violet);
+  font-size: 18px;
+  text-decoration: none;
 }
