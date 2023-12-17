@@ -36,6 +36,16 @@ form {
   /*border-bottom: 1px solid var(--dove-gray);*/
   font-size: 16px;
   /*padding: 1rem;*/
+
+  border-bottom-color: var(--alto);
+  border-bottom-style: solid;
+  margin-bottom: 5rem;
+  padding-bottom: 5rem;
+}
+
+form span {
+  font-size: 7px;
+  color: var(--persimmon);
 }
 
 .form-group {
@@ -63,7 +73,20 @@ input:focus {
 .month-input {
 }
 
+.input-error {
+  border: 1px solid var(--persimmon);
+}
+
+.label-error {
+  color: var(--persimmon);
+}
+
 .year-input {
+}
+
+.wrapper-btn {
+  position: relative;
+  height: 0;
 }
 
 .display-result-btn {
@@ -73,8 +96,8 @@ input:focus {
   cursor: pointer;
   padding: 1rem;
   position: absolute;
-  top: 25%;
-  right: 40%;
+  top: 100px;
+  right: 90px;
 }
 
 .display-result-btn img {
@@ -83,10 +106,10 @@ input:focus {
 }
 
 .result-container {
-  border-top-color: var(--alto);
+  /*border-top-color: var(--alto);
   border-top-style: solid;
   margin-top: 5rem;
-  padding-top: 5rem;
+  padding-top: 5rem;*/
   font-size: 45px;
 }
 
@@ -109,6 +132,6 @@ footer {
 
 footer a {
   color: var(--electric-violet);
-  font-size: 18px;
+  font-size: 16px;
   text-decoration: none;
 }

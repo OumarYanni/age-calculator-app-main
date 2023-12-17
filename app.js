@@ -30,6 +30,8 @@ form.addEventListener("submit", function (e) {
     dayInputValue
   );
   if (isDayValid && isMonthValid && isYearValid) {
+    document.querySelector("#day-input").classList.remove("input-error");
+
     submitForm(dayInputValue, monthInputValue, yearInputValue);
   }
 });
@@ -38,13 +40,20 @@ form.addEventListener("submit", function (e) {
 
 function isDayInputValid(dayInputValue, monthInputValue, yearInputValue) {
   let dayErrorElement = document.querySelector("#day-error");
-  dayErrorElement.textContent = "";
+  let dayLabelElement = document.querySelector("label[for='day-input']");
 
+  dayErrorElement.textContent = "";
   const dayInputElement = document.querySelector("#day-input");
   // const dayInputValue = parseInt(dayInputElement.value, 10);
 
+  dayInputElement.classList.remove("input-error");
+  dayLabelElement.classList.remove("label-error");
+
   if (dayInputElement.value.trim() === "") {
     dayErrorElement.textContent = "This field is required";
+
+    dayInputElement.classList.add("input-error");
+    dayLabelElement.classList.add("label-error");
 
     return false;
   }
@@ -52,6 +61,9 @@ function isDayInputValid(dayInputValue, monthInputValue, yearInputValue) {
   const isDayValid = dayInputValue >= 1 && dayInputValue <= 31;
   if (!isDayValid) {
     dayErrorElement.textContent = "Must be a valid day";
+
+    dayInputElement.classList.add("input-error");
+    dayLabelElement.classList.add("label-error");
 
     return false;
   }
@@ -65,6 +77,9 @@ function isDayInputValid(dayInputValue, monthInputValue, yearInputValue) {
   if (dayInputValue > daysInMonth) {
     dayErrorElement.textContent = "Must be a valid day";
 
+    dayInputElement.classList.add("input-error");
+    dayLabelElement.classList.add("label-error");
+
     return false;
   }
 
@@ -73,13 +88,21 @@ function isDayInputValid(dayInputValue, monthInputValue, yearInputValue) {
 
 function isMonthInputValid(dayInputValue, monthInputValue, yearInputValue) {
   let monthErrorElement = document.querySelector("#month-error");
+  let monthLabelElement = document.querySelector("label[for='month-input']");
+
   monthErrorElement.textContent = "";
 
   const monthInputElement = document.querySelector("#month-input");
   // const monthInputValue = parseInt(monthInputElement.value, 10) - 1;
 
+  monthInputElement.classList.remove("input-error");
+  monthLabelElement.classList.remove("label-error");
+
   if (monthInputElement.value.trim() === "") {
     monthErrorElement.textContent = "This field is required";
+
+    monthInputElement.classList.add("input-error");
+    monthLabelElement.classList.add("label-error");
 
     return false;
   }
@@ -88,6 +111,9 @@ function isMonthInputValid(dayInputValue, monthInputValue, yearInputValue) {
 
   if (!isMonthValid) {
     monthErrorElement.textContent = "Must be a valid month";
+
+    monthInputElement.classList.add("input-error");
+    monthLabelElement.classList.add("label-error");
 
     return false;
   }
@@ -111,13 +137,21 @@ function isMonthInputValid(dayInputValue, monthInputValue, yearInputValue) {
 
 function isYearInputValid(yearInputValue, monthInputValue, dayInputValue) {
   let yearErrorElement = document.querySelector("#year-error");
+  let yearLabelElement = document.querySelector("label[for='year-input']");
+
   yearErrorElement.textContent = "";
 
   const yearInputElement = document.querySelector("#year-input");
   // const yearInputValue = parseInt(yearInputElement.value, 10);
 
+  yearInputElement.classList.remove("input-error");
+  yearLabelElement.classList.remove("label-error");
+
   if (yearInputElement.value.trim() === "") {
     yearErrorElement.textContent = "This field is required";
+
+    yearInputElement.classList.add("input-error");
+    yearLabelElement.classList.add("label-error");
 
     return false;
   }
@@ -132,6 +166,9 @@ function isYearInputValid(yearInputValue, monthInputValue, dayInputValue) {
 
   if (isDateInTheFuture) {
     yearErrorElement.textContent = "Must be in the past";
+
+    yearInputElement.classList.add("input-error");
+    yearLabelElement.classList.add("label-error");
 
     return false;
   }
