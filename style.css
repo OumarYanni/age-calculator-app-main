@@ -54,6 +54,11 @@ form span {
 
 .form-group {
   margin-right: 0.5rem;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .form-group:last-child {
@@ -71,6 +76,11 @@ input {
   border-radius: 0.5rem;
   border-color: var(--alto);
   border-style: solid;
+
+  @media screen and (min-width: 768px) {
+    max-width: 6rem;
+    margin-top: 0.5rem;
+  }
 }
 
 input:focus {
@@ -105,6 +115,10 @@ input:focus {
   display: flex;
   justify-content: center;
   position: relative;
+
+  @media screen and (min-width: 768px) {
+    justify-content: end;
+  }
 }
 
 .display-result-btn {
@@ -144,6 +158,10 @@ input:focus {
 }
 
 .footer {
+  @media screen and (min-width: 768px) {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .footer-link {

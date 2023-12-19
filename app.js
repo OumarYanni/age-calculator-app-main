@@ -176,6 +176,7 @@ function isYearInputValid(yearInputValue, monthInputValue, dayInputValue) {
   return true;
 }
 // reexpliquer toute cette fonction avec mes mots
+// Faire les media queries desktop
 function calculateAge(dayInputValue, monthInputValue, yearInputValue) {
   const birthDate = new Date(yearInputValue, monthInputValue, dayInputValue);
   const today = new Date();
