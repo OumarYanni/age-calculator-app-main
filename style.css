@@ -32,6 +32,7 @@ body {
 
   @media screen and (min-width: 768px) {
     width: 60%;
+    max-width: 850px;
     margin-left: auto;
     margin-right: auto;
     border-radius: 15px 15px 100px 15px;
@@ -44,8 +45,12 @@ body {
 }
 
 form span {
-  font-size: 7px;
+  font-size: 8px;
   color: var(--persimmon);
+
+  @media screen and (min-width: 1024px) {
+    font-size: 10px;
+  }
 }
 
 .form-groups-wrapper {
@@ -148,14 +153,19 @@ input:focus {
   margin-top: 5rem;
   padding-top: 5rem;*/
   font-size: 45px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 55px;
+  }
+  
+  @media screen and (min-width: 1024px) {
+    font-size: 75px;
+  }
 }
 
 .year-container,
 .month-container,
 .day-container {
-  @media screen and (min-width: 768px) {
-    font-size: 75px;
-  }
 }
 
 .display-result-year,
