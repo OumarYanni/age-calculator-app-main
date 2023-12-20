@@ -36,15 +36,12 @@ form.addEventListener("submit", function (e) {
   }
 });
 
-// Next step : calculer day, month et year
-
 function isDayInputValid(dayInputValue, monthInputValue, yearInputValue) {
   let dayErrorElement = document.querySelector("#day-error");
   let dayLabelElement = document.querySelector("label[for='day-input']");
 
   dayErrorElement.textContent = "";
   const dayInputElement = document.querySelector("#day-input");
-  // const dayInputValue = parseInt(dayInputElement.value, 10);
 
   dayInputElement.classList.remove("input-error");
   dayLabelElement.classList.remove("label-error");
@@ -93,7 +90,6 @@ function isMonthInputValid(dayInputValue, monthInputValue, yearInputValue) {
   monthErrorElement.textContent = "";
 
   const monthInputElement = document.querySelector("#month-input");
-  // const monthInputValue = parseInt(monthInputElement.value, 10) - 1;
 
   monthInputElement.classList.remove("input-error");
   monthLabelElement.classList.remove("label-error");
@@ -118,20 +114,6 @@ function isMonthInputValid(dayInputValue, monthInputValue, yearInputValue) {
     return false;
   }
 
-  // const daysInMonth = new Date(
-  //   yearInputValue,
-  //   monthInputValue + 1,
-  //   0
-  // ).getDate();
-
-  // const isDaysInMonthValid = dayInputValue <= daysInMonth;
-
-  // if (!isDaysInMonthValid) {
-  //   dayErrorElement.textContent = "Must be a valid day";
-
-  //   return false;
-  // }
-
   return true;
 }
 
@@ -142,7 +124,6 @@ function isYearInputValid(yearInputValue, monthInputValue, dayInputValue) {
   yearErrorElement.textContent = "";
 
   const yearInputElement = document.querySelector("#year-input");
-  // const yearInputValue = parseInt(yearInputElement.value, 10);
 
   yearInputElement.classList.remove("input-error");
   yearLabelElement.classList.remove("label-error");
@@ -175,8 +156,7 @@ function isYearInputValid(yearInputValue, monthInputValue, dayInputValue) {
 
   return true;
 }
-// reexpliquer toute cette fonction avec mes mots
-// Faire les media queries desktop
+
 function calculateAge(dayInputValue, monthInputValue, yearInputValue) {
   const birthDate = new Date(yearInputValue, monthInputValue, dayInputValue);
   const today = new Date();
@@ -184,7 +164,7 @@ function calculateAge(dayInputValue, monthInputValue, yearInputValue) {
   let yearAge = today.getFullYear() - birthDate.getFullYear();
   let monthAge = today.getMonth() - birthDate.getMonth();
   let dayAge = today.getDate() - birthDate.getDate();
-  //à expliquer
+
   if (dayAge < 0) {
     monthAge--;
     dayAge += new Date(yearInputValue, monthInputValue + 1, 0).getDate();
@@ -194,16 +174,45 @@ function calculateAge(dayInputValue, monthInputValue, yearInputValue) {
     yearAge--;
     monthAge += 12;
   }
-  // à expliquer
+
   return { yearAge, monthAge, dayAge };
+}
+
+function animateNumber(element, start, end, duration) {
+  let current = start;
+  const range = end - start;
+  const increment = end > start ? 1 : -1;
+  const stepTime = Math.abs(Math.floor(duration / range));
+  const timer = setInterval(() => {
+    current += increment;
+    element.textContent = current;
+    if (current == end) {
+      clearInterval(timer);
+    }
+  }, stepTime);
 }
 
 function submitForm(dayInputValue, monthInputValue, yearInputValue) {
   const age = calculateAge(dayInputValue, monthInputValue, yearInputValue);
 
-  document.querySelector(".display-result-year").textContent = age.yearAge;
-  document.querySelector(".display-result-month").textContent = age.monthAge;
-  document.querySelector(".display-result-day").textContent = age.dayAge;
+  animateNumber(
+    document.querySelector(".display-result-year"),
+    0,
+    age.yearAge,
+    1500
+  );
+  animateNumber(
+    document.querySelector(".display-result-month"),
+    0,
+    age.monthAge,
+    1500
+  );
+  animateNumber(
+    document.querySelector(".display-result-day"),
+    0,
+    age.dayAge,
+    1500
+  );
 
   console.log(
     "Age caculé : ",

@@ -93,9 +93,6 @@ input:focus {
   border: 1px solid var(--electric-violet);
 }
 
-.month-input {
-}
-
 .error {
   @media screen and (min-width: 768px) {
     margin: 0.5rem;
@@ -108,9 +105,6 @@ input:focus {
 
 .label-error {
   color: var(--persimmon);
-}
-
-.year-input {
 }
 
 .submit-btn-wrapper::before {
@@ -148,10 +142,6 @@ input:focus {
 }
 
 .result-container {
-  /*border-top-color: var(--alto);
-  border-top-style: solid;
-  margin-top: 5rem;
-  padding-top: 5rem;*/
   font-size: 45px;
 
   @media screen and (min-width: 768px) {
@@ -163,18 +153,10 @@ input:focus {
   }
 }
 
-.year-container,
-.month-container,
-.day-container {
-}
-
 .display-result-year,
 .display-result-month,
 .display-result-day {
   color: var(--electric-violet);
-}
-
-.years {
 }
 
 .footer {
